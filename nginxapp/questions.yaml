@@ -1,0 +1,42 @@
+labels:
+  io.cattle.role: project # options are cluster/project
+categories:
+- zdzw
+questions:
+# Secret
+- variable: zmodule1.image.repository
+  default: /zdzw/wp7/integration/
+  type: string
+  required: true
+  description: "ZDMP Image Repository for Component"
+  label: Image Repository
+  group: "Repository"
+- variable: zmodule1.image.registryUrl
+  label: Private registry URL
+  description: "URL of private registry"
+  group: "Private Registry Settings"
+  type: string
+  default: "registry.gitlab.com"
+  required: true
+# Ingress
+- variable: zmodule1.ingress.domain
+  label: Domain Name
+  description: "The Domain Name"
+  group: "Ingress"
+  type: string
+  default: "platform.zdzw.eu"
+  required: true
+- variable: zmodule1.ingress.tenant
+  label: Tenant Name
+  description: "The Tenant Name"
+  group: "Ingress"
+  type: string
+  default: "zdzw"
+  required: true
+- variable: welcome_message
+  label: Configuration
+  description: "The Welcome Message for nginx"
+  group: "Configuration"
+  type: string
+  default: "This is the zdzw nginxmessage helm chart welcome message"
+  required: true

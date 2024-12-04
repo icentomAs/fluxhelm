@@ -1,0 +1,25 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.app.name }}-persistentvolume
+  namespace: {{ .Release.Namespace }}
+  labels:
+    type: local
+spec:
+  storageClassName: {{ .Values.app.name }}-{{ .Release.Namespace }}-storageclass
+  capacity:
+    storage: {{ .Values.persistence.storage }} 
+  accessModes:
+    - {{ .Values.persistence.accessmode }} 
+  {{- if eq .Values.persistence.nfs.enabled false }}
+  hostPath:
+    path: {{ .Values.persistence.path | quote }} 
+    type: DirectoryOrCreate
+  {{- else }}
+  nfs:
+    server: {{ .Values.persistence.nfs.server | quote}}
+    path: {{ .Values.persistence.nfs.path | quote}}
+  {{- end }}
+{{- end }}
+
