@@ -4,24 +4,26 @@
 
 zmodule1:
   app:
-    name: nginxapp
+    name: nginxapp3
     port: 80
     env: true
 
   replicas: 1
 
   image:
-    registryUrl: gitlabregistry-zdmp.platform.zdmp.eu
-    repository: /zdmp-catalog/zdmp-components/
+    registryUrl: ghcr.io
+    repository: /zdzw-eu/zdzwcatalog/
     name: nginxmessage
-    tag: "1.0.0"
+    tag: "1.0"
     pullPolicy: Always
     privateRegistry:
-      global: true
+      registryUser: "icentomAs"
+      registryPasswd: ""
+      secret: nginxapp3-secret 
 
   ingress:
     tenant: zdzw
-    domain: platform.zdmp.eu
+    domain: platform.zdzw.192-168-10-5.sslip.io
 
   resourcesEnabled: true
   resources: 

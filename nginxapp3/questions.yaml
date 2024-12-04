@@ -1,11 +1,11 @@
 labels:
   io.cattle.role: project # options are cluster/project
 categories:
-- zdzw
+- nginxapp3
 questions:
 # Secret
 - variable: zmodule1.image.repository
-  default: /zdzw/wp7/integration/
+  default: /zdzw-eu/zdzwcatalog/
   type: string
   required: true
   description: "ZDMP Image Repository for Component"
@@ -16,7 +16,21 @@ questions:
   description: "URL of private registry"
   group: "Private Registry Settings"
   type: string
-  default: "registry.gitlab.com"
+  default: "ghcr.io"
+  required: true
+- variable: zmodule1.image.privateRegistry.registryUser
+  label: Private registry Username
+  description: "Username of private registry"
+  group: "Private Registry Settings"
+  type: string
+  default: "icentomAs"
+  required: true
+- variable: zmodule1.image.privateRegistry.registryPasswd
+  label: Private registry Password
+  description: "Password of private registry"
+  group: "Private Registry Settings"
+  type: password
+  default: ""
   required: true
 # Ingress
 - variable: zmodule1.ingress.domain
