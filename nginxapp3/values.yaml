@@ -22,7 +22,7 @@ zmodule1:
       secret: nginxapp3-secret 
 
   ingress:
-    tenant: zdzw
+    tenant: ds2
     domain: platform.zdzw.192-168-50-5.sslip.io
 
   resourcesEnabled: true
