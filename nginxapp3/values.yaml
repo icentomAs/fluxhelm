@@ -23,7 +23,7 @@ zmodule1:
 
   ingress:
     tenant: zdzw
-    domain: platform.zdzw.192-168-10-5.sslip.io
+    domain: platform.zdzw.192-168-50-5.sslip.io
 
   resourcesEnabled: true
   resources: 
