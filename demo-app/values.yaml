@@ -1,0 +1,41 @@
+# Default values for zapp-base.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+zmodule1:
+  app:
+    name: demo-app
+    port: 80
+    env: true
+
+  replicas: 1
+
+  image:
+    registryUrl: ghcr.io
+    repository: /ds2-eu/ds2charts/
+    name: demo-app
+    tag: "1.0.0"
+    pullPolicy: Always
+    privateRegistry:
+      registryUser: "icentomAs"
+      registryPasswd: ""
+      secret: demo-app-secret 
+
+  ingress:
+    tenant: ds2
+    domain: platform.ds2.192-168-50-5.sslip.io
+
+  resourcesEnabled: false
+  resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+      #welcome_message: "This is the zdzw nginxmessage helm chart Welcome Message"

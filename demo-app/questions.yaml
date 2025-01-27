@@ -1,0 +1,49 @@
+labels:
+  io.cattle.role: project # options are cluster/project
+categories:
+- demo-app
+questions:
+# Secret
+- variable: zmodule1.image.repository
+  default: /ds2-eu/ds2charts/
+  type: string
+  required: true
+  description: "DS2 Image Repository for Component"
+  label: Image Repository
+  group: "Repository"
+- variable: zmodule1.image.registryUrl
+  label: Private registry URL
+  description: "URL of private registry"
+  group: "Private Registry Settings"
+  type: string
+  default: "ghcr.io"
+  required: true
+- variable: zmodule1.image.privateRegistry.registryUser
+  label: Private registry Username
+  description: "Username of private registry"
+  group: "Private Registry Settings"
+  type: string
+  default: "icentomAs"
+  required: true
+- variable: zmodule1.image.privateRegistry.registryPasswd
+  label: Private registry Password
+  description: "Password of private registry"
+  group: "Private Registry Settings"
+  type: password
+  default: ""
+  required: true
+# Ingress
+- variable: zmodule1.ingress.domain
+  label: Domain Name
+  description: "The Domain Name"
+  group: "Ingress"
+  type: string
+  default: "192-168-50-5.platform.ds2.sslip.io"
+  required: true
+- variable: zmodule1.ingress.tenant
+  label: Tenant Name
+  description: "The Tenant Name"
+  group: "Ingress"
+  type: string
+  default: "zdzw"
+  required: true

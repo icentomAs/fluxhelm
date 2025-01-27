@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.zmodule1.app.name }}-configmap
+  namespace: {{ .Release.Namespace }}
+data:
+  KEYCLOAK_URL: https://keycloak.ds2.icelab.cloud
+  CLIENT_ID: dashbtn 
+  REALM: ds2
+  SHOW_POST_LOGIN_TEXT: "false" 
+  PORTAL_URL: https://portal.ds2.icelab.cloud
+  MARKETPLACE_URL: https://marketplace.ds2.icelab.cloud
