@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "zapp-base.name" -}}
+{{- define "ds2modulebase.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "zapp-base.fullname" -}}
+{{- define "ds2modulebase.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "zapp-base.chart" -}}
+{{- define "ds2modulebase.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "zapp-base.labels" -}}
-helm.sh/chart: {{ include "zapp-base.chart" . }}
-{{ include "zapp-base.selectorLabels" . }}
+{{- define "ds2modulebase.labels" -}}
+helm.sh/chart: {{ include "ds2modulebase.chart" . }}
+{{ include "ds2modulebase.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "zapp-base.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "zapp-base.name" . }}
+{{- define "ds2modulebase.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ds2modulebase.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "zapp-base.serviceAccountName" -}}
+{{- define "ds2modulebase.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "zapp-base.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ds2modulebase.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
