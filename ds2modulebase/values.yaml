@@ -5,7 +5,7 @@
 app:
   name: ds2module
   port: 8080
-  env: true
+  env: false
 
 replicas: 1
 
