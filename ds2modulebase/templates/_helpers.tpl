@@ -61,7 +61,9 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-#Added to create a secret
+{{/*
+Added to get the platform configuration values
+*/}}
 {{- define "regurl" -}}
 {{ (lookup "v1" "ConfigMap" "icekube" "idtconfigmap").data.registryUrl }}
 {{- end }}
@@ -74,9 +76,28 @@ Create the name of the service account to use
 {{ ((lookup "v1" "Secret" "icekube" "idtsecret").data.token | b64dec) }}
 {{- end }}
 
+{{- define "domain" -}}
+{{ (lookup "v1" "ConfigMap" "icekube" "idtconfigmap").data.domain }}
+{{- end }}
+
+{{- define "registryRepository" -}}
+{{ (lookup "v1" "ConfigMap" "icekube" "idtconfigmap").data.registryRepository }}
+{{- end }}
+
 {{- define "secret" -}}
 {{- $username:=  ( include "username" . ) }}
 {{- $token:= ( include "token" . ) }}
 {{- $regurl:= ( include "regurl" . ) }}
 {{- (printf "{\"auths\": {\"%s\": {\"username\":\"%s\",\"password\":\"%s\",\"auth\": \"%s\"}}}" (printf "%s" $regurl) (printf "%s" $username) (printf "%s" $token) (printf "%s:%s" $username $token | b64enc)) | b64enc }}
+{{- end }}
+
+{{- define "hostURL" -}}
+{{- $domain:= ( include "domain" . ) }}
+{{- (printf "%s.%s" .Values.app.name $domain) }}
+{{- end }}
+
+{{- define "imageURL" -}}
+{{- $regurl:= ( include "regurl" . ) }}
+{{- $registryRepository:= ( include "registryRepository" . ) }}
+{{- (printf "%s%s%s:%s" $regurl $registryRepository .Values.image.name .Values.image.tag) }}
 {{- end }}

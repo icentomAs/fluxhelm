@@ -10,8 +10,8 @@ app:
 replicas: 1
 
 image:
-  registryUrl: ghcr.io
-  repository: /ds2-eu/ds2charts/
+        #registryUrl: ghcr.io
+        #repository: /ds2-eu/ds2charts/
   name: ds2module
   tag: "1.0.0"
   pullPolicy: Always
@@ -49,6 +49,10 @@ service:
   type: ClusterIP
   port: 80
   nodePort: 30808
+
+ingress:
+  enabled: true
+  annotations: {}
 
 resourcesEnabled: false
 resources: 
